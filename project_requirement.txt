@@ -1,0 +1,26 @@
+Create a Django app for a Reading list. It should be REST API-driven.
+You can create a frontend if you want, but the browsable API should be good enough.
+It should allow you to list, add, edit, delete books and mark a book as read.
+Each user should only see their own content.
+
+In addition, you can add filters, pagination, or anything else that you feel would make it a good product
+
+
+
+
+1. Authentication
+    1. Register User done
+    2. Login User
+    3. Logout User done
+2. Book
+    1. Create Book
+    2. Retrive Book
+    #Update Book Is not required!
+    3. List Out All books
+3. User Activity
+    1. Add book to readling list
+    2. Edit
+    3. Delete (instead of deleting data deactivate would be better so it will count as delete!)
+    4. list out all user reading list
+        1. use filter for status
+        2. use pagination
