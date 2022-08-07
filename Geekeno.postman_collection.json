@@ -1,0 +1,382 @@
+{
+	"info": {
+		"_postman_id": "de306d36-5956-45eb-a562-0b5dbfb66fd3",
+		"name": "Geekeno",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14767664"
+	},
+	"item": [
+		{
+			"name": "authentication",
+			"item": [
+				{
+					"name": "Register User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var json_data = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable('auth_token', json_data.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "imnilesh2@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "7990nilesh",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/v1/register/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"v1",
+								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var json_data = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable('auth_token', json_data.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email_id",
+									"value": "imnilesh2@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "7990nilesh",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/v1/login/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"v1",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "token {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/auth/v1/logout/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"v1",
+								"logout",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Create Book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "why with You part 2.0",
+									"type": "text"
+								},
+								{
+									"key": "author",
+									"value": "Nilesh",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/book/v1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"book",
+								"v1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists Books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/book/v1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"book",
+								"v1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrive Book",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/book/v1/:book_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"book",
+								"v1",
+								":book_id"
+							],
+							"variable": [
+								{
+									"key": "book_id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Activity Book list",
+			"item": [
+				{
+					"name": "My Reading List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "token  {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/mybook/v1/?is_deleted=true",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"mybook",
+								"v1",
+								""
+							],
+							"query": [
+								{
+									"key": "is_reading",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "is_deleted",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add book to your Reading List",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "token {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "book_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "add_book",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "book_name",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "author_name",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/mybook/v1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"mybook",
+								"v1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retriving Reading book details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "token {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/mybook/v1/4/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"mybook",
+								"v1",
+								"4",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update or Delete Your Reading Book Status",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "token {{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "is_deleted",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "is_reading",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/mybook/v1/:reading_book_id/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"mybook",
+								"v1",
+								":reading_book_id",
+								""
+							],
+							"variable": [
+								{
+									"key": "reading_book_id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
